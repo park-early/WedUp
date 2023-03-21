@@ -231,9 +231,7 @@
             }
             $result = executePlainSQL($select . $from . $where);
 
-            while ($row = oci_fetch_row($result)) {
-                echo "<br>" . $row[0] . " " .  $row[1] . "<br>";
-            }
+            printResult($result);
         }
 
         // HANDLE ALL POST ROUTES
