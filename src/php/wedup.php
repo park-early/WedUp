@@ -50,8 +50,11 @@
         <h2>Select from Table</h2>
         <form method="GET" action="wedup.php"> <!--refresh page when submitted-->
             <input type="hidden" id="selectRequest" name="selectRequest">
-            Name: <input type="text" name="selectAttribute"> <br /><br />
+            Attributes: <input type="text" name="selectAttributes"> <br /><br />
             Table: <input type="text" name="selectTable"> <br /><br />
+            Condition: <input type="text" name="selectCondition"> <br /><br />
+            Operation: <input type="text" name="selectOperation"> <br /><br />
+            Argument: <input type="text" name="selectArgument"> <br /><br />
 
             <input type="submit" value="Submit" name="selectSubmit"></p>
         </form>
@@ -220,12 +223,16 @@
         function handleSelectRequest() {
             global $db_conn;
 
-            $result = executePlainSQL("SELECT * FROM " . $_GET['selectTable'] . " WHERE name='" . $_GET['selectAttribute'] . "'");
+            $select = "SELECT " . $_GET['selectAttributes'];
+            $from = " FROM " . $_GET['selectTable'];
+            $where = "";
+            if ($_GET['selectCondition'] != "") {
+                $where = " WHERE " . $_GET['selectCondition'] . $_GET['selectOperation'] . "'" . $_GET['selectArgument'] . "'";
+            }
+            $result = executePlainSQL($select . $from . $where);
 
-            if (($row = oci_fetch_row($result)) != false) {
-                foreach ($row as $tuple) {
-                    print_r($tuple);
-                }
+            while ($row = oci_fetch_row($result)) {
+                echo "<br>" . $row[0] . " " .  $row[1] . "<br>";
             }
         }
 
