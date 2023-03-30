@@ -1,6 +1,6 @@
 <!--THIS HTML IS TEMPORARY -->
 
-  <html>
+<html>
     <head>
         <title>WedUP</title>
     </head>
