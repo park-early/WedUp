@@ -59,26 +59,6 @@
             <input type="submit" value="Submit" name="selectSubmit"></p>
         </form>
 
-        <h2>Select using Join</h2>
-        <form method="GET" action="wedup.php"> <!--refresh page when submitted-->
-            <input type="hidden" id="selectJoinRequest" name="selectJoinRequest">
-            Attributes: <input type="text" name="selectAttributes"> <br /><br />
-            Table1: <input type="text" name="joinTable1"> <br /><br />
-            Table2: <input type="text" name="joinTable2"> <br /><br />
-            Join on Table1's: <input type="text" name="joinTable1Attribute"> <br /><br />
-            Join on Table2's: <input type="text" name="joinTable2Attribute"> <br /><br />
-            Condition: <input type="text" name="selectCondition"> <br /><br />
-            Operation: <input type="text" name="selectOperation"> <br /><br />
-            Argument: <input type="text" name="selectArgument"> <br /><br />
-            Attributes from Table: 
-            <select name="joinDropdown" id="joinDropdown">
-                <option value="1">1</option>
-                <option value="2">2</option>
-            </select>
-
-            <input type="submit" value="Submit" name="selectJoinSubmit"></p>
-        </form>
-
         <?php
 		//this tells the system that it's no longer just parsing html; it's now parsing PHP
 
@@ -240,11 +220,6 @@
             }
         }
 
-        // selectAttributes is an attribute or comma separated attributes
-        // selectTable is a table name
-        // selectCondition is an attribute
-        // selectOperation is one of [=, <>, >, >=, <, <=, LIKE, IS NULL, IS NOT NULL]
-        // selectArgument is a value of same domain as selectCondition (empty if IS (NOT) NULL)
         function handleSelectRequest() {
             global $db_conn;
 
@@ -252,52 +227,7 @@
             $from = " FROM " . $_GET['selectTable'];
             $where = "";
             if ($_GET['selectCondition'] != "") {
-                $where = " WHERE " . $_GET['selectCondition'] . " " . $_GET['selectOperation'];
-
-                if ($_GET['selectArgument'] != "") {
-                    if (filter_var($_GET['selectArgument'], FILTER_VALIDATE_INT) === true) {
-                        $where = $where . $_GET['selectArgument'];
-                    } else {
-                        $where = $where . "'" . $_GET['selectArgument'] . "'";
-                    }
-                }
-            }
-            $result = executePlainSQL($select . $from . $where);
-
-            printResult($result);
-        }
-
-        function handleSelectJoinRequest() {
-            global $db_conn;
-
-            $tableUsed = "a";
-            if ($_GET['joinDropdown'] == "2") {
-                $tableUsed = "b";
-            }
-
-            $select = "SELECT ";
-            $attributes = explode(",", $_GET['selectAttributes']);
-            if ($attributes[0] != "*") {
-                for ($i = 0; $i < sizeof($attributes) - 1; $i++) {
-                    $select = $select . $tableUsed . "." . $attributes[$i] . ", ";
-                }
-                $select = $select . $tableUsed . "." . $attributes[sizeof($attributes) - 1];
-            } else {
-                $select = $select . "* ";
-            }
-
-            $from = " FROM " . $_GET['joinTable1'] . " a, " . $_GET['joinTable2'] . " b";
-            $where = " WHERE a." . $_GET['joinTable1Attribute'] . " = b." . $_GET['joinTable2Attribute'];
-            if ($_GET['selectCondition'] != "") {
-                $where = $where . " AND " . $tableUsed . "." . $_GET['selectCondition'] . " " . $_GET['selectOperation'];
-
-                if ($_GET['selectArgument'] != "") {
-                    if (filter_var($_GET['selectArgument'], FILTER_VALIDATE_INT) === true) {
-                        $where = $where . $_GET['selectArgument'];
-                    } else {
-                        $where = $where . "'" . $_GET['selectArgument'] . "'";
-                    }
-                }
+                $where = " WHERE " . $_GET['selectCondition'] . $_GET['selectOperation'] . "'" . $_GET['selectArgument'] . "'";
             }
             $result = executePlainSQL($select . $from . $where);
 
@@ -328,8 +258,6 @@
                     handleCountRequest();
                 } else if (array_key_exists('selectRequest', $_GET)) {
                     handleSelectRequest();
-                } else if (array_key_exists('selectJoinRequest', $_GET)) {
-                    handleSelectJoinRequest();
                 }
 
                 disconnectFromDB();
@@ -338,7 +266,7 @@
 
 		if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['countTupleRequest']) || isset($_GET['selectRequest']) || isset($_GET['selectJoinRequest'])) {
+        } else if (isset($_GET['countTupleRequest']) || isset($_GET['selectRequest'])) {
             handleGETRequest();
         }
 		?>
