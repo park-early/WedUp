@@ -13,6 +13,7 @@
                 <option value="Venue2">Venue 2</option>
                 <option value="Venue3">Venue 3</option>
             </select>
+            <hr>
             <h3>Bride information</h3>
             <label for="bridefname">First name:</label>
             <input type="text" id="bridefname" name="bridefname" required>
@@ -20,6 +21,7 @@
             <input type="text" id="bridelname" name="bridelname" required><br>
             <label for="brideemail">Email:</label>
             <input type="email" id="brideemail" name="brideemail" required>
+            <hr>
             <h3>Groom information</h3>
             <label for="groomfname">First name:</label>
             <input type="text" id="groomfname" name="groomfname" required>
@@ -27,6 +29,7 @@
             <input type="text" id="groomlname" name="groomlname" required><br>
             <label for="groomemail">Email:</label>
             <input type="email" id="groomemail" name="groomemail" required>
+            <hr>
             <h3>Officiant information</h3>
             <label for="officiantfname">First name:</label>
             <input type="text" id="officiantfname" name="officiantfname" required>
@@ -34,7 +37,8 @@
             <input type="text" id="officiantlname" name="officiantlname" required><br>
             <label for="officiantemail">Email:</label>
             <input type="email" id="officiantemail" name="officiantmail" required></p>
-            <input type="submit" value="Add" name="insertSubmit"></p>
+            <hr>
+            <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
     </body>
 </html>
