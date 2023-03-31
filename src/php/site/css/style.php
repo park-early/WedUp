@@ -7,7 +7,7 @@ body {
     background-color: ivory;
 }
 
-.button {
+.main-button {
     display: block;
     margin: auto;
     width: 500px;
@@ -20,6 +20,19 @@ body {
     color: black;
     font-weight: bold;
     line-height: 50px;
+}
+
+.side-button {
+    display: block;
+    width: 100px;
+    height: 25px;
+    background: #ecdfec;
+    padding: 10px;
+    text-align: center;
+    border-radius: 5px;
+    color: black;
+    font-weight: bold;
+    line-height: 25px;
 }
 
 a:link { text-decoration: none; }

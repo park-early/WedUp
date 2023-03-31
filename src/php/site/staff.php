@@ -4,8 +4,9 @@
         <link rel="stylesheet" href="style.php">
     </head>
     <body>
+        <a href="main_page.php" class="side-button">Main Menu</a>
         <form action="staff.php">
-            <h3>Wedding Information</h3>
+            <h2>Wedding Information</h2>
             <label for="wedding">Select wedding to add staff to:</label>
             <select id="wedding" name="wedding" required>
                 <option value="Wedding1">Wedding 1</option>
@@ -13,7 +14,7 @@
                 <option value="Wedding3">Wedding 3</option>
             </select>
             <hr>
-            <h3>Staff Information</h3>
+            <h2>Staff Information</h2>
             <label for="stafffname">First name:</label>
             <input type="text" id="stafffname" name="stafffname" required>
             <label for="stafflname">Last name:</label>

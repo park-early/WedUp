@@ -4,8 +4,9 @@
         <link rel="stylesheet" href="style.php">
     </head>
     <body>
+        <a href="main_page.php" class="side-button">Main Menu</a>
         <form action="guests.php">
-            <h3>Wedding Information</h3>
+            <h2>Wedding Information</h2>
             <label for="wedding">Select wedding to add guest to:</label>
             <select id="wedding" name="wedding" required>
                 <option value="Wedding1">Wedding 1</option>
@@ -13,7 +14,7 @@
                 <option value="Wedding3">Wedding 3</option>
             </select>
             <hr>
-            <h3>Guest Information</h3>
+            <h2>Guest Information</h2>
             <label for="guestfname">First name:</label>
             <input type="text" id="guestfname" name="guestfname" required>
             <label for="guestlname">Last name:</label>
@@ -21,7 +22,7 @@
             <label for="guestemail">Email:</label>
             <input type="email" id="guestemail" name="guestemail" required>
             <hr>
-            <h3>Plus-One Information (Optional)</h3>
+            <h2>Plus-One Information (Optional)</h2>
             <label for="plusonefname">First name:</label>
             <input type="text" id="plusonefname" name="plusonefname">
             <label for="plusonelname">Last name:</label>
