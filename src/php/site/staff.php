@@ -1,10 +1,11 @@
 <html>
     <head>
         <title>WedUP</title>
+        <link rel="stylesheet" href="style.php">
     </head>
     <body>
         <form action="staff.php">
-            <h3>Wedding information</h3>
+            <h3>Wedding Information</h3>
             <label for="wedding">Select wedding to add staff to:</label>
             <select id="wedding" name="wedding" required>
                 <option value="Wedding1">Wedding 1</option>
@@ -12,7 +13,7 @@
                 <option value="Wedding3">Wedding 3</option>
             </select>
             <hr>
-            <h3>Staff information</h3>
+            <h3>Staff Information</h3>
             <label for="stafffname">First name:</label>
             <input type="text" id="stafffname" name="stafffname" required>
             <label for="stafflname">Last name:</label>
