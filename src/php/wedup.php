@@ -74,6 +74,12 @@
             <input type="submit" value="Submit" name="selectJoinSubmit"></p>
         </form>
 
+        <h2>Division (Staff who worked at every wedding)</h2>
+        <form method="GET" action="wedup.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="divisionRequest" name="divisionRequest">
+            <input type="submit" value="Submit" name="selectJoinSubmit"></p>
+        </form>
+
         <?php
 		//this tells the system that it's no longer just parsing html; it's now parsing PHP
 
@@ -328,6 +334,24 @@
             printResult($result);
         }
 
+        function handleDivision() {
+            global $db_conn;
+
+            $select = "SELECT * ";
+
+            $from = " FROM Staff S";
+            $where = " WHERE NOT EXISTS ((SELECT *
+                FROM Staff)
+                MINUS
+                (SELECT S.Email, S.Company, S.FirstName, S.LastName
+                FROM WeddingsBookFor B, WorksAt W
+                WHERE B.WeddingNumber = W.WeddingNumber AND W.StaffEmail = S.Email))";
+            
+            $result = executePlainSQL($select . $from . $where);
+
+            printResult($result);
+        }
+
         // HANDLE ALL POST ROUTES
 	// A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handlePOSTRequest() {
@@ -352,6 +376,8 @@
                     handleSelectRequest();
                 } else if (array_key_exists('selectJoinRequest', $_GET)) {
                     handleSelectJoinRequest();
+                } else if (array_key_exists('divisionRequest', $_GET)) {
+                    handleDivision();
                 }
 
                 disconnectFromDB();
@@ -360,7 +386,7 @@
 
 		if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['selectRequest']) || isset($_GET['selectJoinRequest'])) {
+        } else if (isset($_GET['countTupleRequest']) || isset($_GET['selectRequest']) || isset($_GET['selectJoinRequest'])) {
             handleGETRequest();
         }
 		?>
