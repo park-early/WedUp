@@ -7,6 +7,22 @@ body {
     background-color: ivory;
 }
 
+table {
+  width: 100%;
+  border-collapse: collapse;
+  border: 1px solid;
+}
+
+th {
+  background-color: #ecdfec;
+  border: 1px solid;
+}
+
+td {
+  text-align: center;
+  border: 1px solid;
+}
+
 input[type=submit] {
     background-color: #ecdfec;
     border: none;
@@ -17,6 +33,7 @@ input[type=submit] {
     font-family: Georgia, serif;
     font-weight: bold;
     font-size: 1em;
+    cursor: pointer;
 }
 
 .main-button {

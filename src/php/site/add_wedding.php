@@ -8,7 +8,7 @@
         <form action="add_wedding.php">
             <h2>Wedding Information</h2>
             <label for="date">Wedding date:</label>
-            <input type="date" id="wedding" name="wedding" required><br>
+            <input type="date" id="wedding" name="wedding" required></p>
             <label for="venue">Wedding venue:</label>
             <select id="venue" name="venue" required>
                 <option value="Venue1">Venue 1</option>
@@ -20,15 +20,21 @@
             <label for="bridefname">First name:</label>
             <input type="text" id="bridefname" name="bridefname" required>
             <label for="bridelname">Last name:</label>
-            <input type="text" id="bridelname" name="bridelname" required><br>
+            <input type="text" id="bridelname" name="bridelname" required></p>
             <label for="brideemail">Email:</label>
             <input type="email" id="brideemail" name="brideemail" required>
+            <label for="bouquet">Bouquet type:</label>
+            <select id="bouquet" name="bouquet">
+                <option value="None">None</option>
+                <option value="Bouquet 1">Bouquet 1</option>
+                <option value="Bouquet 2">Bouquet 2</option>
+            </select>
             <hr>
             <h2>Groom Information</h2>
             <label for="groomfname">First name:</label>
             <input type="text" id="groomfname" name="groomfname" required>
             <label for="groomlname">Last name:</label>
-            <input type="text" id="groomlname" name="groomlname" required><br>
+            <input type="text" id="groomlname" name="groomlname" required></p>
             <label for="groomemail">Email:</label>
             <input type="email" id="groomemail" name="groomemail" required>
             <hr>
@@ -36,9 +42,20 @@
             <label for="officiantfname">First name:</label>
             <input type="text" id="officiantfname" name="officiantfname" required>
             <label for="officiantlname">Last name:</label>
-            <input type="text" id="officiantlname" name="officiantlname" required><br>
+            <input type="text" id="officiantlname" name="officiantlname" required></p>
             <label for="officiantemail">Email:</label>
-            <input type="email" id="officiantemail" name="officiantmail" required></p>
+            <input type="email" id="officiantemail" name="officiantmail" required>
+            <label for="company">Company:</label>
+            <select id="company" name="company">
+                <option value="Company 1">Company 1</option>
+                <option value="Company 2">Company 2</option>
+                <option value="Company 3">Company 3</option>
+            </select>
+            <label for="priest">Priest:</label>
+            <input type="checkbox" id="isPriest" name="isPriest" value="Yes">
+            <label for="isPriest">Yes</label>
+            <input type="checkbox" id="isNotPriest" name="isNotPriest" value="No">
+            <label for="isNotPriest">No</label>
             <hr>
             <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
