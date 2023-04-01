@@ -7,11 +7,22 @@ body {
     background-color: ivory;
 }
 
+input[type=submit] {
+    background-color: #ecdfec;
+    border: none;
+    color: black;
+    padding: 10px;
+    text-decoration: none;
+    border-radius: 5px;
+    font-family: Georgia, serif;
+    font-weight: bold;
+    font-size: 1em;
+}
+
 .main-button {
     display: block;
     margin: auto;
     width: 500px;
-    height: 50px;
     background: #ecdfec;
     padding: 10px;
     justify-content: center;
@@ -19,20 +30,19 @@ body {
     border-radius: 5px;
     color: black;
     font-weight: bold;
-    line-height: 50px;
+    line-height: 30px;
 }
 
 .side-button {
     display: block;
     width: 100px;
-    height: 25px;
     background: #ecdfec;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
     color: black;
     font-weight: bold;
-    line-height: 25px;
+    font-size: 1em;
 }
 
 a:link { text-decoration: none; }
