@@ -9,11 +9,11 @@
 
         <form id="venuesInfo" method="GET" action="venues.php">
             <input type="hidden" id="selectRequest" name="selectRequest">
-            <input type="hidden" name="selectAttributes" value="*"> <br /><br />
-            <input type="hidden" name="selectTable" value="Venues"> <br /><br />
-            <input type="hidden" name="selectCondition" value=""> <br /><br />
-            <input type="hidden" name="selectOperation" value=""> <br /><br />
-            <input type="hidden" name="selectArgument" value=""> <br /><br />
+            <input type="hidden" name="selectAttributes" value="*">
+            <input type="hidden" name="selectTable" value="Venues">
+            <input type="hidden" name="selectCondition" value="">
+            <input type="hidden" name="selectOperation" value="">
+            <input type="hidden" name="selectArgument" value="">
         </form>
         
         <?php
