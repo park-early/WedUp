@@ -1,10 +1,12 @@
 <html>
     <head>
         <title>WedUP</title>
+        <link rel="stylesheet" href="style.php">
     </head>
     <body>
+        <a href="main_page.php" class="side-button">Main Menu</a>
         <form action="add_wedding.php">
-            <h3>Wedding information</h3>
+            <h2>Wedding Information</h2>
             <label for="date">Wedding date:</label>
             <input type="date" id="wedding" name="wedding" required><br>
             <label for="venue">Wedding venue:</label>
@@ -14,7 +16,7 @@
                 <option value="Venue3">Venue 3</option>
             </select>
             <hr>
-            <h3>Bride information</h3>
+            <h2>Bride Information</h2>
             <label for="bridefname">First name:</label>
             <input type="text" id="bridefname" name="bridefname" required>
             <label for="bridelname">Last name:</label>
@@ -22,7 +24,7 @@
             <label for="brideemail">Email:</label>
             <input type="email" id="brideemail" name="brideemail" required>
             <hr>
-            <h3>Groom information</h3>
+            <h2>Groom Information</h2>
             <label for="groomfname">First name:</label>
             <input type="text" id="groomfname" name="groomfname" required>
             <label for="groomlname">Last name:</label>
@@ -30,7 +32,7 @@
             <label for="groomemail">Email:</label>
             <input type="email" id="groomemail" name="groomemail" required>
             <hr>
-            <h3>Officiant information</h3>
+            <h2>Officiant Information</h2>
             <label for="officiantfname">First name:</label>
             <input type="text" id="officiantfname" name="officiantfname" required>
             <label for="officiantlname">Last name:</label>
