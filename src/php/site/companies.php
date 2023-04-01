@@ -6,8 +6,6 @@
     <body>
         <a href="main_page.php" class="side-button">Main Menu</a>
         <h1 style="text-align:center">Companies & Hourly Rates</h1>
-<<<<<<< Updated upstream
-=======
 
         <form id="companyInfo" method="GET" action="companies.php">
             <input type="hidden" id="selectRequest" name="selectRequest">
@@ -152,6 +150,5 @@
         }
         ?>
         
->>>>>>> Stashed changes
     </body>
 </html>

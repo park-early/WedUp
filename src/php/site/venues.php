@@ -6,8 +6,6 @@
     <body>
         <a href="main_page.php" class="side-button">Main Menu</a>
         <h1 style="text-align:center">Venues</h1>
-<<<<<<< Updated upstream
-=======
 
         <form id="venuesInfo" method="GET" action="venues.php">
             <input type="hidden" id="selectRequest" name="selectRequest">
@@ -151,6 +149,5 @@
             handleGETRequest();
         }
         ?>
->>>>>>> Stashed changes
     </body>
 </html>
