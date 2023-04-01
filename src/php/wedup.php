@@ -79,6 +79,12 @@
             <input type="submit" value="Submit" name="selectJoinSubmit"></p>
         </form>
 
+        <h2>Division (Staff who worked at every wedding)</h2>
+        <form method="GET" action="wedup.php"> <!--refresh page when submitted-->
+            <input type="hidden" id="divisionRequest" name="divisionRequest">
+            <input type="submit" value="Submit" name="selectJoinSubmit"></p>
+        </form>
+
         <?php
 		//this tells the system that it's no longer just parsing html; it's now parsing PHP
 
@@ -155,12 +161,23 @@
         }
 
         function printResult($result) { //prints results from a select statement
-            echo "<br>Retrieved data from table demoTable:<br>";
+            echo "<br>Retrieved data:<br>";
             echo "<table>";
-            echo "<tr><th>ID</th><th>Name</th></tr>";
+            $headers = "";
+            $ncols = oci_num_fields($result);
+            for ($i = 1; $i <= $ncols; $i++) {
+                $column_name  = oci_field_name($result, $i);
+                $headers = $headers . "<th>" . $column_name . "</th>";
+            }
+            $headers = "<tr>" . $headers . "</tr>";
+            echo $headers;
 
             while ($row = OCI_Fetch_Array($result, OCI_BOTH)) {
-                echo "<tr><td>" . $row["ID"] . "</td><td>" . $row["NAME"] . "</td></tr>"; //or just use "echo $row[0]"
+                $tuple = "";
+                for ($i = 0; $i < $ncols; $i++) {
+                    $tuple = $tuple . "<td>" . $row[$i] . "</td>";
+                }
+                echo "<tr>" . $tuple . "</tr>";
             }
 
             echo "</table>";
@@ -304,6 +321,24 @@
             printResult($result);
         }
 
+        function handleDivision() {
+            global $db_conn;
+
+            $select = "SELECT * ";
+
+            $from = " FROM Staff S";
+            $where = " WHERE NOT EXISTS ((SELECT *
+                FROM Staff)
+                MINUS
+                (SELECT S.Email, S.Company, S.FirstName, S.LastName
+                FROM WeddingsBookFor B, WorksAt W
+                WHERE B.WeddingNumber = W.WeddingNumber AND W.StaffEmail = S.Email))";
+            
+            $result = executePlainSQL($select . $from . $where);
+
+            printResult($result);
+        }
+
         // HANDLE ALL POST ROUTES
 	// A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handlePOSTRequest() {
@@ -330,6 +365,8 @@
                     handleSelectRequest();
                 } else if (array_key_exists('selectJoinRequest', $_GET)) {
                     handleSelectJoinRequest();
+                } else if (array_key_exists('divisionRequest', $_GET)) {
+                    handleDivision();
                 }
 
                 disconnectFromDB();
@@ -338,7 +375,7 @@
 
 		if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['countTupleRequest']) || isset($_GET['selectRequest']) || isset($_GET['selectJoinRequest'])) {
+        } else if (isset($_GET['countTupleRequest']) || isset($_GET['selectRequest']) || isset($_GET['selectJoinRequest']) || isset($_GET['divisionRequest'])) {
             handleGETRequest();
         }
 		?>
