@@ -18,7 +18,7 @@
             <label for="guestfname">First name:</label>
             <input type="text" id="guestfname" name="guestfname" required>
             <label for="guestlname">Last name:</label>
-            <input type="text" id="guestlname" name="guestlname" required><br>
+            <input type="text" id="guestlname" name="guestlname" required></p>
             <label for="guestemail">Email:</label>
             <input type="email" id="guestemail" name="guestemail" required>
             <hr>
@@ -26,7 +26,7 @@
             <label for="plusonefname">First name:</label>
             <input type="text" id="plusonefname" name="plusonefname">
             <label for="plusonelname">Last name:</label>
-            <input type="text" id="plusonelname" name="plusonelname"><br>
+            <input type="text" id="plusonelname" name="plusonelname"></p>
             <label for="plusoneemail">Email:</label>
             <input type="email" id="plusoneemail" name="plusoneemail">
             <hr>
