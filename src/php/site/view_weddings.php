@@ -14,6 +14,28 @@
             <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
         <hr>
+        <form action="view_weddings.php">
+            <input type="hidden" id="selectGroupByRequest" name="selectGroupByRequest">
+            List the number of staff for each wedding:<br /><br />
+
+            <input type="submit" value="Submit" name="insertSubmit"></p>
+        </form>
+        <hr>
+        <form action="view_weddings.php">
+            <input type="hidden" id="selectGroupByHavingRequest" name="selectGroupByHavingRequest">
+            Find the weddings that have a total hourly cost over (in $):
+            <input type="text" name="selectArgument"><br /><br />
+
+            <input type="submit" value="Submit" name="insertSubmit"></p>
+        </form>
+        <hr>
+        <form action="view_weddings.php">
+            <input type="hidden" id="divisionRequest" name="divisionRequest">
+            Find all staff who worked in all weddings:<br /><br />
+
+            <input type="submit" value="Submit" name="insertSubmit"></p>
+        </form>
+        <hr>
 
 
 
@@ -114,7 +136,7 @@
             }
 
             $union = " UNION ";
-            $select = "(SELECT a.FirstName, a.LastName, a.Email";
+            $select = "(SELECT a.FirstName as \"First Name\", a.LastName as \"Last Name\", a.Email as \"Email\"";
 
             $fromGrooms = " FROM GroomsMarry a, WeddingsBookFor b";
             $whereGrooms = " WHERE a.WeddingNumber = b.WeddingNumber AND b.WeddingNumber =" . $_GET['selectArgument'] . ")";
@@ -128,7 +150,7 @@
             $fromGuests = " FROM Guests a, WeddingsBookFor b, Attends c";
             $whereGuests = " WHERE c.WeddingNumber = b.WeddingNumber AND c.GuestEmail=a.Email AND b.WeddingNumber =" . $_GET['selectArgument'] . ")";
 
-            $selectPlusOne = "(SELECT a.FirstName, a.LastName, a.PlusOneEmail";
+            $selectPlusOne = "(SELECT a.FirstName as \"First Name\", a.LastName as \"Last Name\", a.PlusOneEmail as \"Email\"";
             $fromPlusOnes = " FROM PlusOnesBring a, WeddingsBookFor b, Attends c, Guests d";
             $wherePlusOnes = " WHERE c.WeddingNumber = b.WeddingNumber AND c.GuestEmail=d.Email AND a.GuestEmail=d.Email AND b.WeddingNumber =" . $_GET['selectArgument'] . ")";
 
@@ -148,6 +170,56 @@
                 $union . 
                 $select . $fromStaff. $whereStaff
             );
+
+            printResult($result);
+        }
+
+        function handleSelectGroupByRequest() {
+            global $db_conn;
+
+            $select = "SELECT a.WeddingNumber as \"Wedding ID\", COUNT(*) as \"Number of Staff\"";
+            $from = " FROM WeddingsBookFor a, Staff b, WorksAt c";
+            $where = " WHERE a.WeddingNumber=c.WeddingNumber AND c.StaffEmail=b.Email";
+            $groupby = " GROUP BY a.WeddingNumber";
+
+            $result = executePlainSQL($select . $from . $where . $groupby);
+
+            printResult($result);
+        }
+
+        function handleSelectGroupByHavingRequest() {
+            global $db_conn;
+
+            if (filter_var($_GET['selectArgument'], FILTER_VALIDATE_INT) == false) {
+                print_r("INVALID WEDDING ID. WEDDING IDS ARE NUMBERS.");
+                return;
+            }
+
+            $select = "SELECT a.WeddingNumber as \"Wedding ID\", SUM(d.HourlyRate) as \"Total Hourly Cost\"";
+            $from = " FROM WeddingsBookFor a, Staff b, WorksAt c, StaffHourlyRate d";
+            $where = " WHERE a.WeddingNumber=c.WeddingNumber AND c.StaffEmail=b.Email AND d.Company=b.Company";
+            $groupby = " GROUP BY a.WeddingNumber";
+            $having = " HAVING SUM(d.HourlyRate) > " . $_GET['selectArgument'];
+
+            $result = executePlainSQL($select . $from . $where . $groupby . $having);
+
+            printResult($result);
+        }
+
+        function handleDivision() {
+            global $db_conn;
+
+            $select = "SELECT * ";
+
+            $from = " FROM Staff S";
+            $where = " WHERE NOT EXISTS ((SELECT *
+                FROM Staff)
+                MINUS
+                (SELECT S.Email, S.Company, S.FirstName, S.LastName
+                FROM WeddingsBookFor B, WorksAt W
+                WHERE B.WeddingNumber = W.WeddingNumber AND W.StaffEmail = S.Email))";
+            
+            $result = executePlainSQL($select . $from . $where);
 
             printResult($result);
         }
@@ -178,17 +250,21 @@
         // A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handleGETRequest() {
             if (connectToDB()) {
-                if (array_key_exists('selectRequest', $_GET)) {
-                    handleSelectRequest();
+                if (array_key_exists('selectGroupByRequest', $_GET)) {
+                    handleSelectGroupByRequest();
                 } else if (array_key_exists('selectJoinRequest', $_GET)) {
                     handleSelectJoinRequest();
+                } else if (array_key_exists('divisionRequest', $_GET)) {
+                    handleDivision();
+                } else if (array_key_exists('selectGroupByHavingRequest', $_GET)) {
+                    handleSelectGroupByHavingRequest();
                 }
 
                 disconnectFromDB();
             }
         }
 
-        if (isset($_GET['selectRequest']) || isset($_GET['selectJoinRequest'])) {
+        if (isset($_GET['selectGroupByRequest']) || isset($_GET['selectGroupByHavingRequest']) || isset($_GET['selectJoinRequest']) || isset($_GET['divisionRequest'])) {
             if (sanitizeArguments()) {
                 handleGETRequest();
             }
