@@ -30,6 +30,16 @@
         </form>
         <hr>
         <form action="view_weddings.php">
+            <input type="hidden" id="selectGroupByNestedRequest" name="selectGroupByNestedRequest">
+            Find the weddings that have at least 
+            <input type="text" name="selectArgument">
+            guests bringing plus ones:
+            <br /><br />
+
+            <input type="submit" value="Submit" name="insertSubmit"></p>
+        </form>
+        <hr>
+        <form action="view_weddings.php">
             <input type="hidden" id="divisionRequest" name="divisionRequest">
             Find all staff who worked in all weddings:<br /><br />
 
@@ -191,7 +201,7 @@
             global $db_conn;
 
             if (filter_var($_GET['selectArgument'], FILTER_VALIDATE_INT) == false) {
-                print_r("INVALID WEDDING ID. WEDDING IDS ARE NUMBERS.");
+                print_r("INPUT MUST BE A NUMBER.");
                 return;
             }
 
@@ -200,6 +210,27 @@
             $where = " WHERE a.WeddingNumber=c.WeddingNumber AND c.StaffEmail=b.Email AND d.Company=b.Company";
             $groupby = " GROUP BY a.WeddingNumber";
             $having = " HAVING SUM(d.HourlyRate) > " . $_GET['selectArgument'];
+
+            $result = executePlainSQL($select . $from . $where . $groupby . $having);
+
+            printResult($result);
+        }
+
+        function handleSelectGroupByNestedRequest() {
+            global $db_conn;
+
+            if (filter_var($_GET['selectArgument'], FILTER_VALIDATE_INT) == false) {
+                print_r("INPUT MUST BE A NUMBER.");
+                return;
+            }
+
+            $select = "SELECT a.WeddingNumber as \"Wedding ID\", COUNT(*) as \"Number of Guests Bringing Plus Ones\"";
+            $from = " FROM WeddingsBookFor a, Guests b, Attends c";
+            $where = " WHERE a.WeddingNumber=c.WeddingNumber AND c.GuestEmail=b.Email AND b.Email IN (
+                SELECT d.GuestEmail FROM PlusOnesBring d
+            )";
+            $groupby = " GROUP BY a.WeddingNumber";
+            $having = " HAVING COUNT(*) >= " . $_GET['selectArgument'];
 
             $result = executePlainSQL($select . $from . $where . $groupby . $having);
 
@@ -258,13 +289,15 @@
                     handleDivision();
                 } else if (array_key_exists('selectGroupByHavingRequest', $_GET)) {
                     handleSelectGroupByHavingRequest();
+                } else if (array_key_exists('selectGroupByNestedRequest', $_GET)) {
+                    handleSelectGroupByNestedRequest();
                 }
 
                 disconnectFromDB();
             }
         }
 
-        if (isset($_GET['selectGroupByRequest']) || isset($_GET['selectGroupByHavingRequest']) || isset($_GET['selectJoinRequest']) || isset($_GET['divisionRequest'])) {
+        if (isset($_GET['selectGroupByRequest']) || isset($_GET['selectGroupByNestedRequest']) || isset($_GET['selectGroupByHavingRequest']) || isset($_GET['selectJoinRequest']) || isset($_GET['divisionRequest'])) {
             if (sanitizeArguments()) {
                 handleGETRequest();
             }
