@@ -41,12 +41,6 @@
 
         <hr />
 
-        <h2>Count the Tuples in DemoTable</h2>
-        <form method="GET" action="wedup.php"> <!--refresh page when submitted-->
-            <input type="hidden" id="countTupleRequest" name="countTupleRequest">
-            <input type="submit" name="countTuples"></p>
-        </form>
-
         <h2>Select from Table</h2>
         <form method="GET" action="wedup.php"> <!--refresh page when submitted-->
             <input type="hidden" id="selectRequest" name="selectRequest">
@@ -55,6 +49,7 @@
             Condition: <input type="text" name="selectCondition"> <br /><br />
             Operation: <input type="text" name="selectOperation"> <br /><br />
             Argument: <input type="text" name="selectArgument"> <br /><br />
+            Group By: <input type="text" name="selectGroupBy"> <br /><br />
 
             <input type="submit" value="Submit" name="selectSubmit"></p>
         </form>
@@ -247,21 +242,12 @@
             OCICommit($db_conn);
         }
 
-        function handleCountRequest() {
-            global $db_conn;
-
-            $result = executePlainSQL("SELECT Count(*) FROM demoTable");
-
-            if (($row = oci_fetch_row($result)) != false) {
-                echo "<br> The number of tuples in demoTable: " . $row[0] . "<br>";
-            }
-        }
-
         // selectAttributes is an attribute or comma separated attributes
         // selectTable is a table name
         // selectCondition is an attribute
         // selectOperation is one of [=, <>, >, >=, <, <=, LIKE, IS NULL, IS NOT NULL]
         // selectArgument is a value of same domain as selectCondition (empty if IS (NOT) NULL)
+        // selectGroupBy is an attribute or comma seperated attributes
         function handleSelectRequest() {
             global $db_conn;
 
@@ -279,11 +265,38 @@
                     }
                 }
             }
-            $result = executePlainSQL($select . $from . $where);
+
+            $groupby = "";
+            if ($_GET['selectGroupBy'] != "") {
+                $groupByAttributes = explode(",", $_GET['selectGroupBy']);
+                $attributes = explode(",", $_GET['selectAttributes']);
+                foreach ($attributes as $attr1 ) {
+                    $err = true;
+                    foreach ($groupByAttributes as $attr2) {
+                        if ($attr1 == $attr2) $err = false;
+                    }
+                    if ($err) {
+                        print_r("SELECTED ATTRIBUTES MUST APPEAR IN GROUP BY OR BE AGGREGATED");
+                        return;
+                    }
+                }
+                $groupby = " GROUP BY " . $_GET['selectGroupBy'];
+            }
+
+            $result = executePlainSQL($select . $from . $where . $groupby);
 
             printResult($result);
         }
 
+        // selectAttributes is an attribute or comma separated attributes
+        // joinDropdown determines if we should be using attributes from table a or table b
+        // joinTable1 is the first table name
+        // joinTable2 is the second table name
+        // joinTable1Attribute is what we want to join on from the first table
+        // joinTable2Attribute is what we want to join on from the second table
+        // selectCondition is an attribute
+        // selectOperation is one of [=, <>, >, >=, <, <=, LIKE, IS NULL, IS NOT NULL]
+        // selectArgument is a value of same domain as selectCondition (empty if IS (NOT) NULL)
         function handleSelectJoinRequest() {
             global $db_conn;
 
@@ -359,9 +372,7 @@
 	// A better coding practice is to have one method that reroutes your requests accordingly. It will make it easier to add/remove functionality.
         function handleGETRequest() {
             if (connectToDB()) {
-                if (array_key_exists('countTuples', $_GET)) {
-                    handleCountRequest();
-                } else if (array_key_exists('selectRequest', $_GET)) {
+                if (array_key_exists('selectRequest', $_GET)) {
                     handleSelectRequest();
                 } else if (array_key_exists('selectJoinRequest', $_GET)) {
                     handleSelectJoinRequest();
@@ -375,7 +386,7 @@
 
 		if (isset($_POST['reset']) || isset($_POST['updateSubmit']) || isset($_POST['insertSubmit'])) {
             handlePOSTRequest();
-        } else if (isset($_GET['countTupleRequest']) || isset($_GET['selectRequest']) || isset($_GET['selectJoinRequest']) || isset($_GET['divisionRequest'])) {
+        } else if (isset($_GET['countTupleRequest']) || isset($_GET['selectRequest']) || isset($_GET['selectJoinRequest'])) {
             handleGETRequest();
         }
 		?>
