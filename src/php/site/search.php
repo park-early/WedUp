@@ -27,7 +27,7 @@
                 <option value="Cakes">Cakes</option>
                 <option value="Guests">Guests</option>
                 <option value="PlusOnesBring">Plus Ones</option>
-                <option value="ParticipatesIn">Participating Entourages</option>
+                <option value="ParticipateIn">Participating Entourages</option>
                 <option value="WorksAt">Working Staff</option>
                 <option value="Attends">Attending Guests</option>
                 <option value="Bakes">Caterer Specialties</option>
@@ -100,6 +100,497 @@
                     "<option value=\"WeddingNumber\">Wedding ID</option>" + 
                     "<option value=\"StreetAddress\">Venue Address</option>" +
                     "<option value=\"WeddingDate\">WeddingDate</option>";
+                } else if (table == "BridesHolds") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                } else if (table == "GroomsMarry") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BrideEmail\">Bride Email</option>" +
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BrideEmail\">Bride Email</option>" +
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BrideEmail\">Bride Email</option>" +
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BrideEmail\">Bride Email</option>" +
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"BrideEmail\">Bride Email</option>" +
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                } else if (table == "Bouquets") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"BouquetType\">Bouquet Type</option>";
+                } else if (table == "EntouragesAttire") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Role\">Role</option>" + 
+                    "<option value=\"Attire\">Attire</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Role\">Role</option>" + 
+                    "<option value=\"Attire\">Attire</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Role\">Role</option>" + 
+                    "<option value=\"Attire\">Attire</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Role\">Role</option>" + 
+                    "<option value=\"Attire\">Attire</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Role\">Role</option>" + 
+                    "<option value=\"Attire\">Attire</option>";
+                } else if (table == "Entourages") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Role\">Role</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Role\">Role</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Role\">Role</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Role\">Role</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Role\">Role</option>";
+                } else if (table == "VenuesProvince") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>" + 
+                    "<option value=\"Province\">Province</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>" + 
+                    "<option value=\"Province\">Province</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>" + 
+                    "<option value=\"Province\">Province</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>" + 
+                    "<option value=\"Province\">Province</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>" + 
+                    "<option value=\"Province\">Province</option>";
+                } else if (table == "Venues") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"StreetAddress\">Street Address</option>" + 
+                    "<option value=\"Name\">Name</option>" +
+                    "<option value=\"MaxCapacity\">Max Capacity</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"StreetAddress\">Street Address</option>" + 
+                    "<option value=\"Name\">Name</option>" +
+                    "<option value=\"MaxCapacity\">Max Capacity</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"StreetAddress\">Street Address</option>" + 
+                    "<option value=\"Name\">Name</option>" +
+                    "<option value=\"MaxCapacity\">Max Capacity</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"StreetAddress\">Street Address</option>" + 
+                    "<option value=\"Name\">Name</option>" +
+                    "<option value=\"MaxCapacity\">Max Capacity</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"StreetAddress\">Street Address</option>" + 
+                    "<option value=\"Name\">Name</option>" +
+                    "<option value=\"MaxCapacity\">Max Capacity</option>" +
+                    "<option value=\"Postal Code\">Postal Code</option>";
+                } else if (table == "Staff") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Company\">Company</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Company\">Company</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Company\">Company</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Company\">Company</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>" +
+                    "<option value=\"Company\">Company</option>";
+                } else if (table == "StaffHourlyRate") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Company\">Company</option>" + 
+                    "<option value=\"HourlyRate\">Hourly Rate</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Company\">Company</option>" + 
+                    "<option value=\"HourlyRate\">Hourly Rate</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Company\">Company</option>" + 
+                    "<option value=\"HourlyRate\">Hourly Rate</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Company\">Company</option>" + 
+                    "<option value=\"HourlyRate\">Hourly Rate</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Company\">Company</option>" + 
+                    "<option value=\"HourlyRate\">Hourly Rate</option>";
+                } else if (table == "Officiants") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Email\">Email</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Email\">Email</option>";
+                } else if (table == "Caterers") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Cuisine\">Cuisine</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Cuisine\">Cuisine</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Cuisine\">Cuisine</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Cuisine\">Cuisine</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Cuisine\">Cuisine</option>";
+                } else if (table == "Photographers") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Camera\">First Name</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Camera\">First Name</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Camera\">First Name</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Camera\">First Name</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Camera\">First Name</option>";
+                } else if (table == "Cakes") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                } else if (table == "Guests") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"Email\">Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                } else if (table == "PlusOnesBring") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"PlusOneEmail\">Plus One Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"PlusOneEmail\">Plus One Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"PlusOneEmail\">Plus One Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"PlusOneEmail\">Plus One Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"PlusOneEmail\">Plus One Email</option>" + 
+                    "<option value=\"FirstName\">First Name</option>" +
+                    "<option value=\"LastName\">Last Name</option>";
+                } else if (table == "ParticipateIn") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"EntourageEmail\">Entourage Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"EntourageEmail\">Entourage Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"EntourageEmail\">Entourage Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"EntourageEmail\">Entourage Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"EntourageEmail\">Entourage Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                } else if (table == "WorksAt") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"StaffEmail\">Staff Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"StaffEmail\">Staff Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"StaffEmail\">Staff Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"StaffEmail\">Staff Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"StaffEmail\">Staff Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                } else if (table == "Attends") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"GuestEmail\">Guest Email</option>" + 
+                    "<option value=\"WeddingNumber\">Wedding ID</option>";
+                } else if (table == "Bakes") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"CatererEmail\">Caterer Email</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"CatererEmail\">Caterer Email</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"CatererEmail\">Caterer Email</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"CatererEmail\">Caterer Email</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"CatererEmail\">Caterer Email</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                } else if (table == "For") {
+                    document.getElementById("selectAttributes1").innerHTML = 
+                    "<option value=\"*\" selected=\"selected\">All details</option>" +
+                    "<option value=\"WeddingNumber\">Wedding Number</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes2").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"WeddingNumber\">Wedding Number</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes3").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"WeddingNumber\">Wedding Number</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectAttributes4").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">------</option>" +
+                    "<option value=\"WeddingNumber\">Wedding Number</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
+                    document.getElementById("selectCondition").innerHTML = 
+                    "<option value=\"\" selected=\"selected\">none</option>" +
+                    "<option value=\"WeddingNumber\">Wedding Number</option>" + 
+                    "<option value=\"Flavour\">Flavour</option>" + 
+                    "<option value=\"NumberOfTiers\">Number of Tiers</option>";
                 }
             }
 
@@ -244,7 +735,6 @@
             
             if ($_GET['selectAttributes2'] != "" && 
             $_GET['selectAttributes2'] != $_GET['selectAttributes1']) {
-                printf("test inside");
                 $attributeStr = $attributeStr . "," . $_GET['selectAttributes2'];
             }
             if ($_GET['selectAttributes3'] != "" && 
