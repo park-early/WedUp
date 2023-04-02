@@ -40,10 +40,10 @@
             <select id="selectAttributes2" name="selectAttributes2">
                 <option value="" selected="selected">------</option>
             </select>
-            <select id="selectAttributes3" name="selectAttributes2">
+            <select id="selectAttributes3" name="selectAttributes3">
                 <option value="" selected="selected">------</option>
             </select>
-            <select id="selectAttributes4" name="selectAttributes2">
+            <select id="selectAttributes4" name="selectAttributes4">
                 <option value="" selected="selected">------</option>
             </select>
             <br /><br />
@@ -79,27 +79,27 @@
                     "<option value=\"*\" selected=\"selected\">All details</option>" +
                     "<option value=\"WeddingNumber\">Wedding ID</option>" + 
                     "<option value=\"StreetAddress\">Venue Address</option>" +
-                    "<option value=\"Date\">Date</option>";
+                    "<option value=\"WeddingDate\">WeddingDate</option>";
                     document.getElementById("selectAttributes2").innerHTML = 
                     "<option value=\"\" selected=\"selected\">------</option>" +
                     "<option value=\"WeddingNumber\">Wedding ID</option>" + 
                     "<option value=\"StreetAddress\">Venue Address</option>" +
-                    "<option value=\"Date\">Date</option>";
+                    "<option value=\"WeddingDate\">WeddingDate</option>";
                     document.getElementById("selectAttributes3").innerHTML = 
                     "<option value=\"\" selected=\"selected\">------</option>" +
                     "<option value=\"WeddingNumber\">Wedding ID</option>" + 
                     "<option value=\"StreetAddress\">Venue Address</option>" +
-                    "<option value=\"Date\">Date</option>";
+                    "<option value=\"WeddingDate\">WeddingDate</option>";
                     document.getElementById("selectAttributes4").innerHTML = 
                     "<option value=\"\" selected=\"selected\">------</option>" +
                     "<option value=\"WeddingNumber\">Wedding ID</option>" + 
                     "<option value=\"StreetAddress\">Venue Address</option>" +
-                    "<option value=\"Date\">Date</option>";
+                    "<option value=\"WeddingDate\">WeddingDate</option>";
                     document.getElementById("selectCondition").innerHTML = 
                     "<option value=\"\" selected=\"selected\">none</option>" +
                     "<option value=\"WeddingNumber\">Wedding ID</option>" + 
                     "<option value=\"StreetAddress\">Venue Address</option>" +
-                    "<option value=\"Date\">Date</option>";
+                    "<option value=\"WeddingDate\">WeddingDate</option>";
                 }
             }
 
@@ -240,6 +240,25 @@
         }
 
         function sanitizeArguments() {
+            $attributeStr = $_GET['selectAttributes1'];
+            
+            if ($_GET['selectAttributes2'] != "" && 
+            $_GET['selectAttributes2'] != $_GET['selectAttributes1']) {
+                printf("test inside");
+                $attributeStr = $attributeStr . "," . $_GET['selectAttributes2'];
+            }
+            if ($_GET['selectAttributes3'] != "" && 
+            $_GET['selectAttributes3'] != $_GET['selectAttributes1'] &&
+            $_GET['selectAttributes3'] != $_GET['selectAttributes2']) {
+                $attributeStr = $attributeStr . "," . $_GET['selectAttributes3'];
+            }
+            if ($_GET['selectAttributes4'] != "" && 
+            $_GET['selectAttributes4'] != $_GET['selectAttributes1'] &&
+            $_GET['selectAttributes4'] != $_GET['selectAttributes2'] &&
+            $_GET['selectAttributes4'] != $_GET['selectAttributes3']) {
+                $attributeStr = $attributeStr . "," . $_GET['selectAttributes4'];
+            }
+            $_GET['selectAttributes'] = $attributeStr;
             return true;
         }
 
