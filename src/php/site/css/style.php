@@ -7,8 +7,26 @@ body {
     background-color: ivory;
 }
 
+table {
+  width: 75%;
+  border-collapse: collapse;
+  border: 1px solid;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+th {
+  background-color: #ECDFEC;
+  border: 1px solid;
+}
+
+td {
+  text-align: center;
+  border: 1px solid;
+}
+
 input[type=submit] {
-    background-color: #ecdfec;
+    background-color: #ECDFEC;
     border: none;
     color: black;
     padding: 10px;
@@ -17,13 +35,14 @@ input[type=submit] {
     font-family: Georgia, serif;
     font-weight: bold;
     font-size: 1em;
+    cursor: pointer;
 }
 
 .main-button {
     display: block;
     margin: auto;
-    width: 500px;
-    background: #ecdfec;
+    width: 450px;
+    background: #ECDFEC;
     padding: 10px;
     justify-content: center;
     text-align: center;
@@ -36,13 +55,17 @@ input[type=submit] {
 .side-button {
     display: block;
     width: 100px;
-    background: #ecdfec;
+    background: #ECDFEC;
     padding: 10px;
     text-align: center;
     border-radius: 5px;
     color: black;
     font-weight: bold;
     font-size: 1em;
+}
+
+.main-page-header {
+    text-align: center;
 }
 
 a:link { text-decoration: none; }

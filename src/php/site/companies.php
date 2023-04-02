@@ -81,7 +81,6 @@
 
 
         function printResult($result) { //prints results from a select statement
-            echo "<br>Retrieved data:<br>";
             echo "<table>";
             $headers = "";
             $ncols = oci_num_fields($result);
