@@ -52,10 +52,11 @@
                 <option value="Company 3">Company 3</option>
             </select>
             <label for="priest">Priest:</label>
-            <input type="checkbox" id="isPriest" name="isPriest" value="Yes">
-            <label for="isPriest">Yes</label>
-            <input type="checkbox" id="isNotPriest" name="isNotPriest" value="No">
-            <label for="isNotPriest">No</label>
+            <select id="priest" name="priest">
+                <option value="---">---</option>
+                <option value="Yes">Yes</option>
+                <option value="No">No</option>
+            </select>
             <hr>
             <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>

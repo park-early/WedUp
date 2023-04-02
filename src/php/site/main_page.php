@@ -4,7 +4,7 @@
         <link rel="stylesheet" href="style.php">
     </head>
     <body>
-        <h1 style="text-align:center">Main Page</h1>
+        <h1 class="main-page-header">MAIN PAGE</h1>
         <div>
             <a href="add_wedding.php" class="main-button">Add new wedding</a>
             <br/>
