@@ -63,7 +63,6 @@
                 <option value="LIKE">contains</option>
             </select>
             <input type="text" name="selectArgument"> <br /><br />
-            Group By: <input type="text" name="selectGroupBy"> <br /><br />
 
             <input type="submit" value="Submit" name="insertSubmit"></p>
         </form>
