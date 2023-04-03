@@ -139,7 +139,7 @@ grant select on Entourages to public;
 
 
 create table WeddingsBookFor(
-WeddingNumber int null,
+WeddingNumber int not null AUTO_INCREMENT,
 StreetAddress char(30) not null,
 WeddingDate date null,
 primary key (WeddingNumber),
@@ -461,19 +461,19 @@ values('russelnagai@gmail.com', 'ring bearer', 'Russel', 'Nagai');
 
 
 insert into WeddingsBookFor
-values(1, '601 Smithe St', to_date('2023/08/23', 'yyyy/mm/dd'));
+values('601 Smithe St', to_date('2023/08/23', 'yyyy/mm/dd'));
 
 insert into WeddingsBookFor
-values(2, '6301 Crescent Rd', to_date('2023/09/24', 'yyyy/mm/dd'));
+values('6301 Crescent Rd', to_date('2023/09/24', 'yyyy/mm/dd'));
 
 insert into WeddingsBookFor
-values(3,'5251 Oak St', to_date('2023/10/25', 'yyyy/mm/dd'));
+values('5251 Oak St', to_date('2023/10/25', 'yyyy/mm/dd'));
 
 insert into WeddingsBookFor
-values(4, '845 Avison Way', to_date('2023/11/26', 'yyyy/mm/dd'));
+values('845 Avison Way', to_date('2023/11/26', 'yyyy/mm/dd'));
 
 insert into WeddingsBookFor
-values(5, '405 Spray Ave', to_date('2023/12/27', 'yyyy/mm/dd'));
+values('405 Spray Ave', to_date('2023/12/27', 'yyyy/mm/dd'));
 
 
 insert into PlusOnesBring
