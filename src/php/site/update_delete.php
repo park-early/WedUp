@@ -123,6 +123,7 @@
 		
 		function handleUpdateRequest() {
             global $db_conn;
+            global $success;
 			
 			$select = $_POST['selectAttribute'];
             $from = $_POST['selectTable'];
@@ -132,12 +133,18 @@
             executePlainSQL("UPDATE $from SET $select='" . $new_value . "' WHERE $select='" . $old_value . "'");
 			
             OCICommit($db_conn);
+            if ($success) {
+                echo "SUCCESFULLY UPDATED";
+            } else {
+                echo "UNABLE TO UPDATE";
+            }
         }
 		
 		
 		
 		function handleDeleteRequest() {
             global $db_conn;
+            global $success;
 			
 			$pk = $_POST['selectAttribute'];
             $table = $_POST['selectTable'];
@@ -148,6 +155,11 @@
 			} else {
 				executePlainSQL("DELETE FROM $table WHERE $pk = '$value' ");
 			}		
+            if ($success) {
+                echo "SUCCESFULLY DELETED";
+            } else {
+                echo "UNABLE TO DELETE";
+            }
 		
             OCICommit($db_conn);
         }
