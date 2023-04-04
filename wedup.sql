@@ -34,7 +34,7 @@ FirstName char(30) null,
 LastName char(30) null,
 BouquetType char(30) null,
 primary key (Email),
-foreign key (BouquetType) references Bouquets
+foreign key (BouquetType) references Bouquets ON DELETE CASCADE
 );
 
 grant select on BridesHolds to public;
@@ -56,8 +56,8 @@ primary key (PostalCode)
 grant select on VenuesProvince to public;
 
 create table StaffHourlyRate(
-Company char(30) null,
-HourlyRate int null,
+Company char(30) not null,
+HourlyRate int not null,
 primary key (Company)
 );
 
@@ -117,11 +117,11 @@ grant select on Venues to public;
 
 create table Staff(
 Email char(30) null,
-Company char(30) null,
+Company char(30) not null,
 FirstName char(30) null,
 LastName char(30) null,
 primary key (Email),
-foreign key (Company) references StaffHourlyRate ON DELETE CASCADE
+foreign key (Company) references StaffHourlyRate(Company) ON DELETE CASCADE
 );
 
 grant select on Staff to public;
@@ -155,7 +155,7 @@ PlusOneEmail char(30) null,
 FirstName char(30) null,
 LastName char(30) null,
 primary key (GuestEmail, PlusOneEmail),
-foreign key (GuestEmail) references Guests
+foreign key (GuestEmail) references Guests ON DELETE CASCADE
 );
 
 grant select on PlusOnesBring to public;
@@ -165,8 +165,8 @@ CatererEmail char(30) null,
 Flavour char(30) null,
 NumberOfTiers int null,
 primary key (CatererEmail, Flavour, NumberOfTiers),
-foreign key (CatererEmail) references Caterers,
-foreign key (Flavour, NumberOfTiers) references Cakes
+foreign key (CatererEmail) references Caterers ON DELETE CASCADE,
+foreign key (Flavour, NumberOfTiers) references Cakes ON DELETE CASCADE
 );
 
 grant select on Bakes to public;
@@ -176,8 +176,8 @@ Flavour char(30) null,
 NumberOfTiers int null,
 WeddingNumber int null,
 primary key (Flavour, NumberOfTiers, WeddingNumber),
-foreign key (Flavour, NumberOfTiers) references Cakes,
-foreign key (WeddingNumber) references WeddingsBookFor
+foreign key (Flavour, NumberOfTiers) references Cakes ON DELETE CASCADE,
+foreign key (WeddingNumber) references WeddingsBookFor ON DELETE CASCADE
 );
 
 grant select on ForWho to public;
@@ -186,8 +186,8 @@ create table Attends(
 WeddingNumber int null,
 GuestEmail char(30) null,
 primary key (WeddingNumber, GuestEmail),
-foreign key (WeddingNumber) references WeddingsBookFor,
-foreign key (GuestEmail) references Guests
+foreign key (WeddingNumber) references WeddingsBookFor ON DELETE CASCADE,
+foreign key (GuestEmail) references Guests ON DELETE CASCADE
 );
 
 grant select on Attends to public;
@@ -196,8 +196,8 @@ create table WorksAt(
 WeddingNumber int null,
 StaffEmail char(30) null,
 primary key (WeddingNumber, StaffEmail),
-foreign key (WeddingNumber) references WeddingsBookFor,
-foreign key (StaffEmail) references Staff
+foreign key (WeddingNumber) references WeddingsBookFor ON DELETE CASCADE,
+foreign key (StaffEmail) references Staff ON DELETE CASCADE
 );
 
 grant select on WorksAt to public;
@@ -206,8 +206,8 @@ create table ParticipateIn(
 WeddingNumber int null,
 EntourageEmail char(30) null,
 primary key (WeddingNumber, EntourageEmail),
-foreign key (WeddingNumber) references WeddingsBookFor,
-foreign key (EntourageEmail) references Entourages
+foreign key (WeddingNumber) references WeddingsBookFor ON DELETE CASCADE,
+foreign key (EntourageEmail) references Entourages ON DELETE CASCADE
 );
 
 grant select on ParticipateIn to public;
