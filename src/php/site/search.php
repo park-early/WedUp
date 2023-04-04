@@ -30,8 +30,8 @@
                 <option value="ParticipateIn">Participating Entourages</option>
                 <option value="WorksAt">Working Staff</option>
                 <option value="Attends">Attending Guests</option>
-                <option value="Bakes">Caterer Specialties</option>
-                <option value="For">Reserved Cakes</option>
+                <option value="Bakes">Caterer Baking</option>
+                <option value="ForWho">Reserved Cakes</option>
             </select> <br /><br />
             What are you looking for? <br /><br />
             <select id="selectAttributes1" name="selectAttributes1" required>
@@ -564,7 +564,7 @@
                     "<option value=\"CatererEmail\">Caterer Email</option>" + 
                     "<option value=\"Flavour\">Flavour</option>" + 
                     "<option value=\"NumberOfTiers\">Number of Tiers</option>";
-                } else if (table == "For") {
+                } else if (table == "ForWho") {
                     document.getElementById("selectAttributes1").innerHTML = 
                     "<option value=\"*\" selected=\"selected\">All details</option>" +
                     "<option value=\"WeddingNumber\">Wedding Number</option>" + 
@@ -707,24 +707,7 @@
                 }
             }
 
-            $groupby = "";
-            if ($_GET['selectGroupBy'] != "") {
-                $groupByAttributes = explode(",", $_GET['selectGroupBy']);
-                $attributes = explode(",", $_GET['selectAttributes']);
-                foreach ($attributes as $attr1 ) {
-                    $err = true;
-                    foreach ($groupByAttributes as $attr2) {
-                        if ($attr1 == $attr2) $err = false;
-                    }
-                    if ($err) {
-                        print_r("SELECTED ATTRIBUTES MUST APPEAR IN GROUP BY OR BE AGGREGATED");
-                        return;
-                    }
-                }
-                $groupby = " GROUP BY " . $_GET['selectGroupBy'];
-            }
-
-            $result = executePlainSQL($select . $from . $where . $groupby);
+            $result = executePlainSQL($select . $from . $where);
 
             printResult($result);
         }

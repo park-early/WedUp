@@ -243,10 +243,10 @@
             $select = "SELECT * ";
 
             $from = " FROM Staff S";
-            $where = " WHERE NOT EXISTS ((SELECT *
-                FROM Staff)
+            $where = " WHERE NOT EXISTS ((SELECT WeddingNumber
+                FROM WeddingsBookFor)
                 MINUS
-                (SELECT S.Email, S.Company, S.FirstName, S.LastName
+                (SELECT B.WeddingNumber
                 FROM WeddingsBookFor B, WorksAt W
                 WHERE B.WeddingNumber = W.WeddingNumber AND W.StaffEmail = S.Email))";
             
