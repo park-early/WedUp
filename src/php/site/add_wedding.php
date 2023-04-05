@@ -253,7 +253,7 @@
             executeBoundSQL("insert into Staff values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
             OCICommit($db_conn);
 
-            echo '<script>alert("Successfully added!")</script>';
+            echo '<script>alert("Successfully added! The wedding number is ' . $row[0] . '.")</script>';
         }
         ?>
     </body>
