@@ -8,6 +8,7 @@
         <form method="POST" action="add_wedding.php">
             <input type="hidden" id="addWeddingRequest" name="addWeddingRequest">
             <h2>Wedding Information</h2>
+
             <label for="weddingDate">Wedding date:</label>
             <input type="date" name="weddingDate" required></p>
             <label for="weddingVenue">Wedding venue:</label>

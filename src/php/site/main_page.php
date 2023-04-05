@@ -12,7 +12,9 @@
             <br/>
             <a href="staff.php" class="main-button">Add staff to a wedding</a>    
             <br/>
-            <a href="view_weddings.php" class="main-button">View all weddings</a>
+            <a href="view_weddings.php" class="main-button">View wedding info</a>
+            <br/>
+            <a href="update_delete.php" class="main-button">Update or delete wedding info</a>
             <br/>
             <a href="search.php" class="main-button">Search and filter through weddings</a>
             <br/>
