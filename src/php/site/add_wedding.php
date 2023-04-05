@@ -28,7 +28,6 @@
             <input type="email" name="brideEmail" required>
             <label for="brideBouquet">Bouquet style:</label>
             <select name="brideBouquet">
-                <option value="none">None</option>
                 <option value="cascade">Cascade</option>
                 <option value="posy">Posy</option>
                 <option value="hand-tied">Hand-tied</option>
@@ -204,44 +203,16 @@
         function handleAddWedding() {
             global $db_conn;
 
-			// WeddingNumber: <input type="text" name="insWedNum"> <br /><br />
-            // StreetAddress: <input type="text" name="insStreet"> <br /><br />
-			// WeddingDate: <input type="text" name="insDate"> <br /><br />
-            $input_date = strtotime($_POST["weddingDate"]);
-            $date = date("Y-m-d", $input_date);
-
             $tuple = array (
                 ":bind1" => null,
 				":bind2" => $_POST['weddingVenue'],
-				":bind3" => $date
+				":bind3" => $_POST["weddingDate"]
             );
-
-            echo $_POST['weddingDate'];
-			
             $alltuples = array (
                 $tuple
             );
-
-            executeBoundSQL("insert into WeddingsBookFor values (:bind1, :bind2, :bind3)", $alltuples);
-
-            // executePlainSQL("insert into WeddingsBookFor values (null, $venue, to_date($date, 'yyyy-mm-dd'))");
-
-
-            $wedding_num = executePlainSQL("SELECT * FROM WeddingsBookFor WHERE WeddingNumber = (SELECT MAX(WeddingNumber) FROM WeddingsBookFor)");
-
-            $tuple = array (
-                ":bind1" => $_POST['groomEmail'],
-                ":bind2" => $_POST['groomFirstName'],
-				":bind3" => $_POST['groomLastName'],
-				":bind4" => $_POST['brideEmail'],
-				":bind5" => $wedding_num
-            );
-			
-            $alltuples = array (
-                $tuple
-            );
-		
-            executeBoundSQL("insert into GroomsMarry values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
+            executeBoundSQL("INSERT into WeddingsBookFor values (:bind1, :bind2, TO_DATE(:bind3, 'YYYY-MM-DD'))", $alltuples);
+            OCICommit($db_conn);
 
             $tuple = array (
                 ":bind1" => $_POST['brideEmail'],
@@ -249,16 +220,39 @@
 				":bind3" => $_POST['brideLastName'],
 				":bind4" => $_POST['brideBouquet']
             );
-			
             $alltuples = array (
                 $tuple
             );
-			
             executeBoundSQL("insert into BridesHolds values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+            OCICommit($db_conn);
+
+            $result = executePlainSQL("SELECT max(WeddingNumber) FROM WeddingsBookFor");
+            $row = OCI_Fetch_Array($result, OCI_BOTH);
+            $tuple = array (
+                ":bind1" => $_POST['groomEmail'],
+                ":bind2" => $_POST['groomFirstName'],
+				":bind3" => $_POST['groomLastName'],
+				":bind4" => $_POST['brideEmail'],
+				":bind5" => $row[0]
+            );
+            $alltuples = array (
+                $tuple
+            );
+            executeBoundSQL("insert into GroomsMarry values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
+
+            $tuple = array (
+                ":bind1" => $_POST['officiantEmail'],
+                ":bind2" => $_POST['officiantCompany'],
+				":bind3" => $_POST['officiantFirstName'],
+				":bind4" => $_POST['officiantLastName']
+            );
+            $alltuples = array (
+                $tuple
+            );
+            executeBoundSQL("insert into Staff values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
+            OCICommit($db_conn);
 
             echo '<script>alert("Successfully added!")</script>';
-				
-            OCICommit($db_conn);
         }
         ?>
     </body>
