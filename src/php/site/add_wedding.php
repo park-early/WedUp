@@ -88,7 +88,7 @@
 
             // Your username is ora_(CWL_ID) and the password is a(student number). For example,
 			// ora_platypus is the username and a12345678 is the password.
-            $db_conn = OCILogon("ora_asyquia", "a96799671", "dbhost.students.cs.ubc.ca:1522/stu");
+            $db_conn = OCILogon("ora_parkerl6", "a35909605", "dbhost.students.cs.ubc.ca:1522/stu");
 
             if ($db_conn) {
                 debugAlertMessage("Database is Connected");
@@ -108,6 +108,30 @@
             OCILogoff($db_conn);
         }
 
+        function executePlainSQL($cmdstr) { //takes a plain (no bound variables) SQL command and executes it
+            //echo "<br>running ".$cmdstr."<br>";
+            global $db_conn, $success;
+
+            $statement = OCIParse($db_conn, $cmdstr);
+            //There are a set of comments at the end of the file that describe some of the OCI specific functions and how they work
+
+            if (!$statement) {
+                echo "<br>Cannot parse the following command: " . $cmdstr . "<br>";
+                $e = OCI_Error($db_conn); // For OCIParse errors pass the connection handle
+                echo htmlentities($e['message']);
+                $success = False;
+            }
+
+            $r = OCIExecute($statement, OCI_DEFAULT);
+            if (!$r) {
+                echo "<br>Cannot execute the following command: " . $cmdstr . "<br>";
+                $e = oci_error($statement); // For OCIExecute errors pass the statementhandle
+                echo htmlentities($e['message']);
+                $success = False;
+            }
+
+			return $statement;
+		}
         function executeBoundSQL($cmdstr, $list) {
         /* Sometimes the same statement will be executed several times with different values for the variables involved in the query.
         In this case you don't need to create the statement several times. Bound variables cause a statement to only be
@@ -183,31 +207,40 @@
 			// WeddingNumber: <input type="text" name="insWedNum"> <br /><br />
             // StreetAddress: <input type="text" name="insStreet"> <br /><br />
 			// WeddingDate: <input type="text" name="insDate"> <br /><br />
-			
+            $input_date = strtotime($_POST["weddingDate"]);
+            $date = date("Y-m-d", $input_date);
+
             $tuple = array (
-                ":bind1" => $_POST['weddingVenue'],
-				":bind2" => $_POST['weddingDate'],
+                ":bind1" => null,
+				":bind2" => $_POST['weddingVenue'],
+				":bind3" => $date
             );
+
+            echo $_POST['weddingDate'];
 			
             $alltuples = array (
                 $tuple
             );
 
-            executeBoundSQL("insert into WeddingsBookFor values (:bind1, :bind2)", $alltuples);
+            executeBoundSQL("insert into WeddingsBookFor values (:bind1, :bind2, :bind3)", $alltuples);
+
+            // executePlainSQL("insert into WeddingsBookFor values (null, $venue, to_date($date, 'yyyy-mm-dd'))");
+
+
+            $wedding_num = executePlainSQL("SELECT * FROM WeddingsBookFor WHERE WeddingNumber = (SELECT MAX(WeddingNumber) FROM WeddingsBookFor)");
 
             $tuple = array (
                 ":bind1" => $_POST['groomEmail'],
                 ":bind2" => $_POST['groomFirstName'],
 				":bind3" => $_POST['groomLastName'],
 				":bind4" => $_POST['brideEmail'],
-				":bind5" => $_POST['insWedNum']
+				":bind5" => $wedding_num
             );
 			
             $alltuples = array (
                 $tuple
             );
-			
-
+		
             executeBoundSQL("insert into GroomsMarry values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
 
             $tuple = array (
@@ -224,57 +257,6 @@
             executeBoundSQL("insert into BridesHolds values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
 
             echo '<script>alert("Successfully added!")</script>';
-				
-            OCICommit($db_conn);
-        }
-        
-		function handleInsertGroomsMarry() {
-            global $db_conn;
-
-            // Email: <input type="text" name="insEmail"> <br /><br />		
-			// FirstName: <input type="text" name="insFName"> <br /><br />			
-			// LastName: <input type="text" name="insLName"> <br /><br />
-			// BrideEmail: <input type="text" name="insBEmail"> <br /><br />		
-			// WeddingNumber: <input type="text" name="insWedNum"> <br /><br />	
-            			
-            $tuple = array (
-                ":bind1" => $_POST['groomEmail'],
-                ":bind2" => $_POST['groomFirstName'],
-				":bind3" => $_POST['groomLastName'],
-				":bind4" => $_POST['brideEmail'],
-				":bind5" => $_POST['insWedNum']
-            );
-			
-            $alltuples = array (
-                $tuple
-            );
-			
-
-            executeBoundSQL("insert into GroomsMarry values (:bind1, :bind2, :bind3, :bind4, :bind5)", $alltuples);
-				
-            OCICommit($db_conn);
-        }
-		
-		function handleInsertBridesHolds() {
-            global $db_conn;
-            
-			// Email: <input type="text" name="insEmail"> <br /><br />		
-			// FirstName: <input type="text" name="insFName"> <br /><br />			
-			// LastName: <input type="text" name="insLName"> <br /><br />
-			// BouquetType: <input type="text" name="insBouquet"> <br /><br />	
-			
-            $tuple = array (
-                ":bind1" => $_POST['brideEmail'],
-                ":bind2" => $_POST['brideFirstName'],
-				":bind3" => $_POST['brideLastName'],
-				":bind4" => $_POST['brideBouquet']
-            );
-			
-            $alltuples = array (
-                $tuple
-            );
-			
-            executeBoundSQL("insert into BridesHolds values (:bind1, :bind2, :bind3, :bind4)", $alltuples);
 				
             OCICommit($db_conn);
         }
